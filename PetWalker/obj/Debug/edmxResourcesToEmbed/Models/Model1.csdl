@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PetWalkerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PetWalkerDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Customers" EntityType="PetWalkerDBModel.Customer" />
+    <EntitySet Name="Messages" EntityType="PetWalkerDBModel.Message" />
+    <EntitySet Name="Pets" EntityType="PetWalkerDBModel.Pet" />
+    <EntitySet Name="Walks" EntityType="PetWalkerDBModel.Walk" />
+    <EntitySet Name="Walkers" EntityType="PetWalkerDBModel.Walker" />
+    <AssociationSet Name="FK_Message_Message" Association="PetWalkerDBModel.FK_Message_Message">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pet_Customers" Association="PetWalkerDBModel.FK_Pet_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Pet" EntitySet="Pets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Walk_Customers" Association="PetWalkerDBModel.FK_Walk_Customers">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Walk" EntitySet="Walks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Walk_Pet" Association="PetWalkerDBModel.FK_Walk_Pet">
+      <End Role="Pet" EntitySet="Pets" />
+      <End Role="Walk" EntitySet="Walks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Walk_Walkers" Association="PetWalkerDBModel.FK_Walk_Walkers">
+      <End Role="Walker" EntitySet="Walkers" />
+      <End Role="Walk" EntitySet="Walks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="EMail" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="DOB" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="ZipPostal" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IDNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Messages" Relationship="PetWalkerDBModel.FK_Message_Message" FromRole="Customer" ToRole="Message" />
+    <NavigationProperty Name="Pets" Relationship="PetWalkerDBModel.FK_Pet_Customers" FromRole="Customer" ToRole="Pet" />
+    <NavigationProperty Name="Walks" Relationship="PetWalkerDBModel.FK_Walk_Customers" FromRole="Customer" ToRole="Walk" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MessageSenderID" Type="Int32" />
+    <Property Name="MessageText" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="MessageDate" Type="DateTime" Precision="3" />
+    <Property Name="MessageSenderNameSurname" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="PetWalkerDBModel.FK_Message_Message" FromRole="Message" ToRole="Customer" />
+  </EntityType>
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="PetID" />
+    </Key>
+    <Property Name="PetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Weight" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Age" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Braid" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="OwnerID" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="PetWalkerDBModel.FK_Pet_Customers" FromRole="Pet" ToRole="Customer" />
+    <NavigationProperty Name="Walks" Relationship="PetWalkerDBModel.FK_Walk_Pet" FromRole="Pet" ToRole="Walk" />
+  </EntityType>
+  <EntityType Name="Walk">
+    <Key>
+      <PropertyRef Name="WalkID" />
+    </Key>
+    <Property Name="WalkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="PetID" Type="Int32" />
+    <Property Name="WalkerID" Type="Int32" />
+    <Property Name="Rate" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Length" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Price" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Date" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="PetWalkerDBModel.FK_Walk_Customers" FromRole="Walk" ToRole="Customer" />
+    <NavigationProperty Name="Pet" Relationship="PetWalkerDBModel.FK_Walk_Pet" FromRole="Walk" ToRole="Pet" />
+    <NavigationProperty Name="Walker" Relationship="PetWalkerDBModel.FK_Walk_Walkers" FromRole="Walk" ToRole="Walker" />
+  </EntityType>
+  <EntityType Name="Walker">
+    <Key>
+      <PropertyRef Name="WalkerID" />
+    </Key>
+    <Property Name="FName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="DateOfBirth" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="WalkerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rating" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Experience" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Walks" Relationship="PetWalkerDBModel.FK_Walk_Walkers" FromRole="Walker" ToRole="Walk" />
+  </EntityType>
+  <Association Name="FK_Message_Message">
+    <End Type="PetWalkerDBModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="PetWalkerDBModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="MessageSenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pet_Customers">
+    <End Type="PetWalkerDBModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="PetWalkerDBModel.Pet" Role="Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Walk_Customers">
+    <End Type="PetWalkerDBModel.Customer" Role="Customer" Multiplicity="0..1" />
+    <End Type="PetWalkerDBModel.Walk" Role="Walk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Walk">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Walk_Pet">
+    <End Type="PetWalkerDBModel.Pet" Role="Pet" Multiplicity="0..1" />
+    <End Type="PetWalkerDBModel.Walk" Role="Walk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="PetID" />
+      </Principal>
+      <Dependent Role="Walk">
+        <PropertyRef Name="PetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Walk_Walkers">
+    <End Type="PetWalkerDBModel.Walker" Role="Walker" Multiplicity="0..1" />
+    <End Type="PetWalkerDBModel.Walk" Role="Walk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Walker">
+        <PropertyRef Name="WalkerID" />
+      </Principal>
+      <Dependent Role="Walk">
+        <PropertyRef Name="WalkerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

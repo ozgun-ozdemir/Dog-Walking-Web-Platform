@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FName" Type="nchar" MaxLength="10" />
+    <Property Name="LName" Type="nchar" MaxLength="10" />
+    <Property Name="EMail" Type="nchar" MaxLength="20" />
+    <Property Name="Phone" Type="nchar" MaxLength="10" />
+    <Property Name="Password" Type="nchar" MaxLength="20" />
+    <Property Name="DOB" Type="nchar" MaxLength="100" />
+    <Property Name="Address" Type="nchar" MaxLength="100" />
+    <Property Name="ZipPostal" Type="nchar" MaxLength="10" />
+    <Property Name="IDNumber" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MessageSenderID" Type="int" />
+    <Property Name="MessageText" Type="nchar" MaxLength="50" />
+    <Property Name="MessageDate" Type="datetime" />
+    <Property Name="MessageSenderNameSurname" Type="nchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="Pet">
+    <Key>
+      <PropertyRef Name="PetID" />
+    </Key>
+    <Property Name="PetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="10" />
+    <Property Name="Weight" Type="nchar" MaxLength="10" />
+    <Property Name="Age" Type="nchar" MaxLength="10" />
+    <Property Name="Braid" Type="nchar" MaxLength="10" />
+    <Property Name="Color" Type="nchar" MaxLength="10" />
+    <Property Name="OwnerID" Type="int" />
+  </EntityType>
+  <EntityType Name="Walk">
+    <Key>
+      <PropertyRef Name="WalkID" />
+    </Key>
+    <Property Name="WalkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="PetID" Type="int" />
+    <Property Name="WalkerID" Type="int" />
+    <Property Name="Rate" Type="nchar" MaxLength="100" />
+    <Property Name="Length" Type="nchar" MaxLength="100" />
+    <Property Name="Price" Type="nchar" MaxLength="100" />
+    <Property Name="Date" Type="nchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Walkers">
+    <Key>
+      <PropertyRef Name="WalkerID" />
+    </Key>
+    <Property Name="FName" Type="nchar" MaxLength="10" />
+    <Property Name="LName" Type="nchar" MaxLength="10" />
+    <Property Name="Address" Type="nchar" MaxLength="10" />
+    <Property Name="DateOfBirth" Type="nchar" MaxLength="10" />
+    <Property Name="Phone" Type="nchar" MaxLength="10" />
+    <Property Name="WalkerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rating" Type="nchar" MaxLength="10" />
+    <Property Name="Experience" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_Message_Message">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="MessageSenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pet_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="Pet" Type="Self.Pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Pet">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Walk_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+    <End Role="Walk" Type="Self.Walk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Walk">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Walk_Pet">
+    <End Role="Pet" Type="Self.Pet" Multiplicity="0..1" />
+    <End Role="Walk" Type="Self.Walk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pet">
+        <PropertyRef Name="PetID" />
+      </Principal>
+      <Dependent Role="Walk">
+        <PropertyRef Name="PetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Walk_Walkers">
+    <End Role="Walkers" Type="Self.Walkers" Multiplicity="0..1" />
+    <End Role="Walk" Type="Self.Walk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Walkers">
+        <PropertyRef Name="WalkerID" />
+      </Principal>
+      <Dependent Role="Walk">
+        <PropertyRef Name="WalkerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StoreContainer">
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pet" EntityType="Self.Pet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Walk" EntityType="Self.Walk" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Walkers" EntityType="Self.Walkers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Message_Message" Association="Self.FK_Message_Message">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Message" EntitySet="Message" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pet_Customers" Association="Self.FK_Pet_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Pet" EntitySet="Pet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Walk_Customers" Association="Self.FK_Walk_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Walk" EntitySet="Walk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Walk_Pet" Association="Self.FK_Walk_Pet">
+      <End Role="Pet" EntitySet="Pet" />
+      <End Role="Walk" EntitySet="Walk" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Walk_Walkers" Association="Self.FK_Walk_Walkers">
+      <End Role="Walkers" EntitySet="Walkers" />
+      <End Role="Walk" EntitySet="Walk" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

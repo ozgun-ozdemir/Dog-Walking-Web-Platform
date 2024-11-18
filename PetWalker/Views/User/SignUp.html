@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/styles/signUpPage.css">
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header class="EditNavbar">
+        <!--navbar section -->
+        <nav class="navbar navbar-expand-md navbar-active bg-light text-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><i class="fa-solid fa-paw"></i></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/Home/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/User/UserProfile">My Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Walker/WalkerProfile">Walker Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Walker/Search">Search Walker</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/ChatPage">Chat</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Walker/WalkDetail">Walks</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/User/SignUp">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/User/LogOut">Sign out</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="/User/SignIn">Sign in</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sign up (form style) -->
+        <div class="container">
+            <form class="signUpForm" id="signUpForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Name:</label>
+                        <input placeholder="Name" type="text" class="form-control" id="FName" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Surname:</label>
+                        <input placeholder="Surname" type="text" class="form-control" id="LName" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputEmail">Email address:</label>
+                        <input type="email" class="form-control" id="EMail" placeholder="Email address" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputPhone">Phone number:</label>
+                        <input type="tel" class="form-control" id="Phone" placeholder="Phone number" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputPassword">Password:</label>
+                        <input type="password" class="form-control" id="Password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputDateOfBirth">Date of Birth:</label>
+                        <input type="date" class="form-control" id="DOB" required>
+                    </div>
+                    <div class="form-group col">
+                        <label for="inputGender">Gender:</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="male" required>
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="female" required>
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputAddress">Address:</label>
+                        <input type="text" class="form-control" id="Address" placeholder="Address" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inputZip">Zip:</label>
+                            <input type="text" class="form-control" id="Zip" placeholder="Zip" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                            <label class="form-check-label left-align" for="gridCheck">Check me out</label>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success" id="SEND">Sign up</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+    <script>
+        $("#signUpForm").submit(function (e) {
+            e.preventDefault(); // Prevent the form from submitting the normal way
+
+            // Capture gender
+            var gender = $("input[name='gender']:checked").val();
+
+            // Validate form fields
+            if ($("#FName").val() && $("#LName").val() && $("#EMail").val() && $("#Phone").val() && $("#Password").val() && $("#DOB").val() && $("#Address").val() && $("#Zip").val() && gender) {
+                var FName = $('#FName').val();
+                var LName = $('#LName').val();
+                var EMail = $('#EMail').val();
+                var Phone = $('#Phone').val();
+                var Password = $('#Password').val();
+                var DOB = $('#DOB').val();
+                var Address = $('#Address').val();
+                var ZipPostal = $('#Zip').val();
+
+                $.ajax({
+                    type: "POST",
+                    url: '/userCreater', // Ensure this URL is correct for your backend
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({ FName: FName, LName: LName, EMail: EMail, Phone: Phone, Password: Password, DOB: DOB, Address: Address, ZipPostal: ZipPostal, Gender: gender }),
+                    success: function (data) {
+                        alert("User created successfully.");
+                    },
+                    error: function (data) {
+                        alert("User creation failed. Please try again.");
+                    }
+                });
+            } else {
+                alert("Please fill in all required fields.");
+            }
+        });
+    </script>
+</body>
+
+</html>
