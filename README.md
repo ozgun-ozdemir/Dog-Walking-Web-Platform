@@ -4,12 +4,12 @@ This is a web-based platform that connects pet owners with pet walkers. The app 
 
 ## Features
 
-**User Profile:** Create and manage a user profile with personal and contact information.
-**Search Walkers:** Search for available pet walkers based on location, experience, and ratings.
-**Schedule Walks:** Book and schedule walks with a pet walker, including specifying walk duration and pricing.
-**Ratings and Reviews:** Rate and review walkers after each session.
-**Chat:** Pet owners and walkers can send messages.
-**Admin Panel:** Manage user accounts and walker details (Admin-only feature).
+- **User Profile:** Create and manage a user profile with personal and contact information.
+- **Search Walkers:** Search for available pet walkers based on location, experience, and ratings.
+- **Schedule Walks:** Book and schedule walks with a pet walker, including specifying walk duration and pricing.
+- **Ratings and Reviews:** Rate and review walkers after each session.
+- **Chat:** Pet owners and walkers can send messages.
+- **Admin Panel:** Manage user accounts and walker details (Admin-only feature).
 
 ## Technologies Used
 
